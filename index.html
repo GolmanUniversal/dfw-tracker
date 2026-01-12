@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DFW Concessions Proposal Tracker</title>
+<style>
+  @page { size: letter; margin: 0.4in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 15px;
+    font-size: 10px;
+  }
+  h1 { color: #1a365d; margin-bottom: 3px; font-size: 18px; }
+  h2 { color: #4a5568; font-weight: normal; margin-top: 0; font-size: 12px; margin-bottom: 10px; }
+
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #cbd5e0; padding: 3px 4px; text-align: left; font-size: 8px; line-height: 1.2; }
+  th { background-color: #1a365d; color: white; font-weight: 600; font-size: 8px; }
+
+  /* Phase Colors */
+  .kickoff { background-color: #e6fffa; }
+  .concept-build { background-color: #fef3c7; }
+  .preview { background-color: #fde68a; font-weight: 600; }
+  .refinement { background-color: #dbeafe; }
+  .concept-lock { background-color: #bbf7d0; font-weight: 600; }
+  .build { background-color: #e0e7ff; }
+  .integration { background-color: #fce7f3; }
+  .design-freeze { background-color: #f9a8d4; font-weight: 600; }
+  .sbec { background-color: #fed7aa; }
+  .hard-stop { background-color: #ef4444; color: white; font-weight: 700; }
+  .final { background-color: #dc2626; color: white; font-weight: 700; }
+
+  /* Owner Colors */
+  .party-jbj { color: #1d4ed8; font-weight: 700; }
+  .party-nyic { color: #047857; font-weight: 700; }
+  .party-bwod { color: #b45309; font-weight: 700; }
+  .party-sunshine { color: #6d28d9; font-weight: 700; }
+  .party-augustus { color: #b91c1c; font-weight: 700; }
+  .party-golman { color: #be185d; font-weight: 700; }
+
+  .milestone {
+    background-color: #7c3aed;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: 600;
+  }
+
+  .golman { border-left: 4px solid #be185d; background-color: #fdf2f8 !important; }
+
+  /* Page break before summaries */
+  .page-break {
+    page-break-before: always;
+    padding-top: 15px;
+  }
+
+  /* Summary section - 2 rows of 3 */
+  .summaries-title {
+    color: #1a365d;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #1a365d;
+    padding-bottom: 5px;
+  }
+  .summaries {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  .summary-box {
+    border: 2px solid #94a3b8;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .summary-box h4 {
+    margin: 0 0 8px 0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+  }
+  .summary-box ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .summary-box li { margin-bottom: 4px; }
+
+  .box-sunshine { border-color: #6d28d9; }
+  .box-sunshine h4 { background: #6d28d9; }
+  .box-jbj { border-color: #1d4ed8; }
+  .box-jbj h4 { background: #1d4ed8; }
+  .box-bwod { border-color: #b45309; }
+  .box-bwod h4 { background: #b45309; }
+  .box-nyic { border-color: #047857; }
+  .box-nyic h4 { background: #047857; }
+  .box-augustus { border-color: #b91c1c; }
+  .box-augustus h4 { background: #b91c1c; }
+  .box-golman { border-color: #be185d; background: #fdf2f8; }
+  .box-golman h4 { background: #be185d; }
+
+  /* Legend */
+  .legend {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 4px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 8px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-color { width: 14px; height: 10px; border: 1px solid #666; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: MAIN TABLE -->
+<h1>DFW CONCESSIONS PROPOSAL TRACKER</h1>
+<h2>Final Submission: February 2, 2025 | Internal Hard Stop: January 31, 2025</h2>
+
+<table>
+<thead>
+<tr>
+  <th style="width:60px;">Date</th>
+  <th style="width:40px;">Day</th>
+  <th style="width:95px;">Phase</th>
+  <th>Deliverable</th>
+  <th style="width:120px;">Responsible</th>
+  <th style="width:55px;">Status</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>Final proposal outline (Tabs 1-9)</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
+<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>RFP compliance checklist mapped to scoring criteria</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
+<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>Ownership structure confirmation (equity % for SBEC)</td><td class="party-nyic">NYIC / JBJ / Augustus</td><td></td></tr>
+
+<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Narrative strategy confirmation (differentiator-led approach)</td><td class="party-jbj">JBJ Management</td><td></td></tr>
+<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Review cadence & preview rules confirmed</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
+<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Bonfire submission requirements confirmed</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
+
+<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Concept narrative drafting (Dallas → Fort Worth journey)</td><td class="party-jbj">JBJ / BWOD</td><td></td></tr>
+<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Neighborhood storytelling & brand positioning</td><td class="party-bwod">BWOD / JBJ</td><td></td></tr>
+<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Initial merchandise logic & category strategy</td><td class="party-nyic">NYIC / BWOD</td><td></td></tr>
+
+<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Concept direction & sense-of-place narrative</td><td class="party-jbj">JBJ Management</td><td></td></tr>
+<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Neighborhood framework & brand expression</td><td class="party-bwod">BWOD</td><td></td></tr>
+<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Initial merchandise philosophy (non-pricing)</td><td class="party-nyic">NYIC</td><td></td></tr>
+
+<tr class="refinement"><td>Jan 18-19</td><td>Sa-Su</td><td>REFINEMENT</td><td>Concept revisions based on feedback</td><td class="party-jbj">JBJ / BWOD</td><td></td></tr>
+<tr class="refinement"><td>Jan 18-19</td><td>Sa-Su</td><td>REFINEMENT</td><td>Operational assumptions drafting</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="refinement"><td>Jan 18-19</td><td>Sa-Su</td><td>REFINEMENT</td><td>Workforce program framework drafting</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
+
+<tr class="concept-lock"><td>Jan 20</td><td>Mon</td><td><span class="milestone">CONCEPT LOCK</span></td><td>Final Tab 2 (Concept Fit & Differentiation)</td><td class="party-jbj">JBJ Management</td><td></td></tr>
+<tr class="concept-lock"><td>Jan 20</td><td>Mon</td><td><span class="milestone">CONCEPT LOCK</span></td><td>Brand story & neighborhood logic locked</td><td class="party-bwod">BWOD</td><td></td></tr>
+
+<tr class="build golman"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td><strong>Store design development</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Operational model drafting (staffing, hours, flow)</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Workforce programming language refinement</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Customer Experience framework drafting</td><td class="party-jbj">JBJ Management</td><td></td></tr>
+
+<tr class="preview golman"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td><strong>Initial store layout & zoning</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
+<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft operational narrative (non-financial)</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft workforce section</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
+<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft Customer Experience (Tab 4 A-B)</td><td class="party-jbj">JBJ Management</td><td></td></tr>
+
+<tr class="integration golman"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td><strong>Design revisions</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>Operations refinement</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>CARE / hospitality standards integration</td><td class="party-jbj">JBJ Management</td><td></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>Workforce alignment with #OneDFW values</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
+
+<tr class="design-freeze golman"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td><strong>Final store layout & renderings</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
+<tr class="design-freeze"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td>Final operational model</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="design-freeze"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td>Final workforce narrative</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
+
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Full draft Tabs 3-6</td><td class="party-jbj">JBJ / NYIC</td><td></td></tr>
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft pro forma</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft financial exhibits</td><td class="party-nyic">NYIC</td><td></td></tr>
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft SBEC ownership inputs</td><td class="party-sunshine">Sunshine / NYIC / JBJ</td><td></td></tr>
+
+<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>SBEC Forms (F-1 through F-6)</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
+<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>Joint Venture Agreement</td><td class="party-sunshine">Sunshine / Legal</td><td></td></tr>
+<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>Ownership percentages finalized</td><td class="party-nyic">All parties</td><td></td></tr>
+
+<tr class="hard-stop"><td>Jan 31</td><td>Fri</td><td>HARD STOP</td><td>All sections complete and reviewed</td><td>All teams</td><td></td></tr>
+<tr class="final"><td>Feb 2</td><td>Sun</td><td>FINAL</td><td>Submit to DFW via Bonfire</td><td style="color:white;font-weight:700;">Sunshine White</td><td></td></tr>
+
+</tbody>
+</table>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-color" style="background:#e6fffa"></div>Kickoff/Align</div>
+  <div class="legend-item"><div class="legend-color" style="background:#fef3c7"></div>Concept Build</div>
+  <div class="legend-item"><div class="legend-color" style="background:#fde68a"></div>Preview</div>
+  <div class="legend-item"><div class="legend-color" style="background:#dbeafe"></div>Refinement</div>
+  <div class="legend-item"><div class="legend-color" style="background:#bbf7d0"></div>Lock/Freeze</div>
+  <div class="legend-item"><div class="legend-color" style="background:#e0e7ff"></div>Build</div>
+  <div class="legend-item"><div class="legend-color" style="background:#fce7f3"></div>Integration</div>
+  <div class="legend-item"><div class="legend-color" style="background:#fed7aa"></div>SBEC</div>
+  <div class="legend-item"><div class="legend-color" style="background:#ef4444"></div>Deadline</div>
+  <div class="legend-item"><div class="legend-color" style="background:#fdf2f8;border-left:3px solid #be185d"></div>Golman Universal</div>
+</div>
+
+<!-- PAGE 2: SUMMARY BOXES -->
+<div class="page-break">
+  <h1 class="summaries-title">DELIVERABLES BY TEAM</h1>
+
+  <div class="summaries">
+
+    <div class="summary-box box-sunshine">
+      <h4>SUNSHINE WHITE - 7 Tasks</h4>
+      <ul>
+        <li><strong>Jan 13:</strong> Final proposal outline (Tabs 1-9)</li>
+        <li><strong>Jan 13:</strong> RFP compliance checklist</li>
+        <li><strong>Jan 14:</strong> Review cadence & preview rules</li>
+        <li><strong>Jan 14:</strong> Bonfire submission requirements</li>
+        <li><strong>Jan 27:</strong> Draft SBEC ownership inputs</li>
+        <li><strong>Jan 28-29:</strong> SBEC Forms (F-1 to F-6)</li>
+        <li><strong>Jan 28-29:</strong> Joint Venture Agreement</li>
+        <li><strong>Feb 2:</strong> Final submission via Bonfire</li>
+      </ul>
+    </div>
+
+    <div class="summary-box box-jbj">
+      <h4>JBJ MANAGEMENT - 10 Tasks</h4>
+      <ul>
+        <li><strong>Jan 14:</strong> Narrative strategy confirmation</li>
+        <li><strong>Jan 15-16:</strong> Concept narrative drafting</li>
+        <li><strong>Jan 17:</strong> Concept direction (PREVIEW 1)</li>
+        <li><strong>Jan 18-19:</strong> Concept revisions</li>
+        <li><strong>Jan 20:</strong> Final Tab 2 (CONCEPT LOCK)</li>
+        <li><strong>Jan 21-22:</strong> CX framework drafting</li>
+        <li><strong>Jan 23:</strong> Draft CX Tab 4 (PREVIEW 2)</li>
+        <li><strong>Jan 24-25:</strong> CARE/hospitality standards</li>
+        <li><strong>Jan 27:</strong> Full draft Tabs 3-6 (PREVIEW 3)</li>
+      </ul>
+    </div>
+
+    <div class="summary-box box-bwod">
+      <h4>BWOD - 4 Tasks</h4>
+      <ul>
+        <li><strong>Jan 15-16:</strong> Neighborhood storytelling & brand positioning</li>
+        <li><strong>Jan 17:</strong> Neighborhood framework & brand expression (PREVIEW 1)</li>
+        <li><strong>Jan 18-19:</strong> Concept revisions based on feedback</li>
+        <li><strong>Jan 20:</strong> Brand story & neighborhood logic locked (CONCEPT LOCK)</li>
+      </ul>
+    </div>
+
+    <div class="summary-box box-nyic">
+      <h4>NYIC - 11 Tasks</h4>
+      <ul>
+        <li><strong>Jan 13:</strong> Ownership structure confirmation</li>
+        <li><strong>Jan 15-16:</strong> Merchandise logic & category strategy</li>
+        <li><strong>Jan 17:</strong> Merchandise philosophy (PREVIEW 1)</li>
+        <li><strong>Jan 18-19:</strong> Operational assumptions drafting</li>
+        <li><strong>Jan 21-22:</strong> Operational model drafting</li>
+        <li><strong>Jan 23:</strong> Draft ops narrative (PREVIEW 2)</li>
+        <li><strong>Jan 24-25:</strong> Operations refinement</li>
+        <li><strong>Jan 26:</strong> Final operational model (DESIGN FREEZE)</li>
+        <li><strong>Jan 27:</strong> Draft pro forma & financials (PREVIEW 3)</li>
+      </ul>
+    </div>
+
+    <div class="summary-box box-augustus">
+      <h4>AUGUSTUS SINCLAIR - 6 Tasks</h4>
+      <ul>
+        <li><strong>Jan 13:</strong> Ownership structure confirmation</li>
+        <li><strong>Jan 18-19:</strong> Workforce program framework drafting</li>
+        <li><strong>Jan 21-22:</strong> Workforce programming refinement</li>
+        <li><strong>Jan 23:</strong> Draft workforce section (PREVIEW 2)</li>
+        <li><strong>Jan 24-25:</strong> Workforce #OneDFW alignment</li>
+        <li><strong>Jan 26:</strong> Final workforce narrative (DESIGN FREEZE)</li>
+      </ul>
+    </div>
+
+    <div class="summary-box box-golman">
+      <h4>GOLMAN UNIVERSAL - 4 Tasks</h4>
+      <ul>
+        <li><strong>Jan 21-22:</strong> Store design development</li>
+        <li><strong>Jan 23:</strong> Initial store layout & zoning (PREVIEW 2)</li>
+        <li><strong>Jan 24-25:</strong> Design revisions</li>
+        <li><strong>Jan 26:</strong> Final store layout & renderings (DESIGN FREEZE)</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
