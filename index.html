@@ -12,7 +12,7 @@
     font-size: 10px;
   }
   h1 { color: #1a365d; margin-bottom: 8px; font-size: 36px; }
-  h2 { color: #4a5568; font-weight: normal; margin-top: 0; font-size: 20px; margin-bottom: 20px; }
+  h2 { color: #4a5568; font-weight: normal; margin-top: 0; font-size: 20px; margin-bottom: 15px; }
 
   table { border-collapse: collapse; width: 100%; }
   th, td { border: 1px solid #cbd5e0; padding: 3px 6px; text-align: left; font-size: 22px; line-height: 1.1; }
@@ -102,9 +102,9 @@
   .box-golman { border-color: #be185d; background: #fdf2f8; }
   .box-golman h4 { background: #be185d; }
 
-  /* Legend */
+  /* Legend at TOP */
   .legend {
-    margin-top: 25px;
+    margin-bottom: 20px;
     padding: 18px 25px;
     background: #f8fafc;
     border-radius: 10px;
@@ -112,9 +112,124 @@
     gap: 25px;
     flex-wrap: wrap;
     font-size: 16px;
+    border: 2px solid #e2e8f0;
   }
   .legend-item { display: flex; align-items: center; gap: 8px; }
   .legend-color { width: 24px; height: 18px; border: 1px solid #666; border-radius: 4px; }
+
+  /* Status cell styling */
+  .status-cell {
+    cursor: pointer;
+    text-align: center;
+    min-width: 100px;
+    transition: background-color 0.2s;
+  }
+  .status-cell:hover {
+    background-color: #e2e8f0 !important;
+  }
+  .status-cell.completed {
+    background-color: #22c55e !important;
+    color: white;
+    font-weight: 700;
+  }
+  .status-cell .checkmark {
+    font-size: 24px;
+  }
+  .status-cell .completion-info {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  .modal h3 {
+    margin: 0 0 20px 0;
+    color: #1a365d;
+    font-size: 24px;
+    border-bottom: 2px solid #1a365d;
+    padding-bottom: 10px;
+  }
+  .modal-task {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-left: 4px solid #7c3aed;
+  }
+  .modal label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #374151;
+  }
+  .modal select, .modal input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 18px;
+    background: white;
+  }
+  .modal select:focus, .modal input:focus {
+    outline: none;
+    border-color: #7c3aed;
+  }
+  .modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .modal-buttons button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .modal-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .btn-complete {
+    background: #22c55e;
+    color: white;
+  }
+  .btn-clear {
+    background: #ef4444;
+    color: white;
+  }
+  .btn-cancel {
+    background: #6b7280;
+    color: white;
+  }
 </style>
 </head>
 <body>
@@ -123,83 +238,7 @@
 <h1>DFW CONCESSIONS PROPOSAL TRACKER</h1>
 <h2>Final Submission: February 2, 2025 | Internal Hard Stop: January 31, 2025</h2>
 
-<table>
-<thead>
-<tr>
-  <th style="width:90px;">Date</th>
-  <th style="width:50px;">Day</th>
-  <th style="width:160px; white-space:nowrap;">Phase</th>
-  <th>Deliverable</th>
-  <th style="width:200px; white-space:nowrap;">Responsible</th>
-  <th style="width:70px;">Status</th>
-</tr>
-</thead>
-<tbody>
-
-<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>Final proposal outline (Tabs 1-9)</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
-<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>RFP compliance checklist mapped to scoring criteria</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
-<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>Ownership structure confirmation (equity % for SBEC)</td><td class="party-nyic">NYIC / JBJ / Augustus</td><td></td></tr>
-
-<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Narrative strategy confirmation (differentiator-led approach)</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Review cadence & preview rules confirmed</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
-<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Bonfire submission requirements confirmed</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
-
-<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Concept narrative drafting (Dallas → Fort Worth journey)</td><td class="party-jbj">JBJ / BWOD</td><td></td></tr>
-<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Community engagement narrative</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Neighborhood storytelling & brand positioning</td><td class="party-bwod">BWOD / JBJ</td><td></td></tr>
-<tr class="concept-build"><td>Jan 15-16</td><td>W-Th</td><td>CONCEPT BUILD</td><td>Initial merchandise logic & category strategy</td><td class="party-nyic">NYIC / BWOD</td><td></td></tr>
-
-<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Concept direction & sense-of-place narrative</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Neighborhood framework & brand expression</td><td class="party-bwod">BWOD</td><td></td></tr>
-<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Initial merchandise philosophy (non-pricing)</td><td class="party-nyic">NYIC</td><td></td></tr>
-
-<tr class="refinement"><td>Jan 18-19</td><td>Sa-Su</td><td>REFINEMENT</td><td>Concept revisions based on feedback</td><td class="party-jbj">JBJ / BWOD</td><td></td></tr>
-<tr class="refinement"><td>Jan 18-19</td><td>Sa-Su</td><td>REFINEMENT</td><td>Operational assumptions drafting</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="refinement"><td>Jan 18-19</td><td>Sa-Su</td><td>REFINEMENT</td><td>Workforce program framework drafting</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
-
-<tr class="concept-lock"><td>Jan 20</td><td>Mon</td><td><span class="milestone">CONCEPT LOCK</span></td><td>Final Tab 2 (Concept Fit & Differentiation)</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-<tr class="concept-lock"><td>Jan 20</td><td>Mon</td><td><span class="milestone">CONCEPT LOCK</span></td><td>Brand story & neighborhood logic locked</td><td class="party-bwod">BWOD</td><td></td></tr>
-
-<tr class="build golman"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td><strong>Store design development</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
-<tr class="build golman"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td><strong>Flight log feature design</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
-<tr class="build golman"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td><strong>Coordination with NYIC on staffing</strong></td><td class="party-golman">GOLMAN / NYIC</td><td></td></tr>
-<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Operational model drafting (staffing, hours, flow)</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Technology / POS system integration plan</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Workforce programming language refinement</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
-<tr class="build"><td>Jan 21-22</td><td>Tu-W</td><td>BUILD WINDOW</td><td>Customer Experience framework drafting</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-
-<tr class="preview golman"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td><strong>Initial store layout & zoning</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
-<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft operational narrative (non-financial)</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft workforce section</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
-<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft Customer Experience (Tab 4 A-B)</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-
-<tr class="integration golman"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td><strong>Design revisions</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
-<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>Operations refinement</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>CARE / hospitality standards integration</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>Photography / graphic design for proposal</td><td class="party-jbj">JBJ Management</td><td></td></tr>
-<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>Product photos</td><td class="party-bwod">BWOD</td><td></td></tr>
-<tr class="integration"><td>Jan 24-25</td><td>Fr-Sa</td><td>INTEGRATION</td><td>Workforce alignment with #OneDFW values</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
-
-<tr class="design-freeze golman"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td><strong>Final store layout & renderings</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td></td></tr>
-<tr class="design-freeze"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td>Final operational model</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="design-freeze"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td>Final workforce narrative</td><td class="party-augustus">Augustus Sinclair</td><td></td></tr>
-
-<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Full draft Tabs 3-6</td><td class="party-jbj">JBJ / NYIC</td><td></td></tr>
-<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft pro forma</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft financial exhibits</td><td class="party-nyic">NYIC</td><td></td></tr>
-<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft SBEC ownership inputs</td><td class="party-sunshine">Sunshine / NYIC / JBJ</td><td></td></tr>
-
-<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>SBEC Forms (F-1 through F-6)</td><td class="party-sunshine">Sunshine White</td><td></td></tr>
-<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>Joint Venture Agreement</td><td class="party-sunshine">Sunshine / Legal</td><td></td></tr>
-<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>Licensing agreement</td><td class="party-bwod">BWOD</td><td></td></tr>
-<tr class="sbec"><td>Jan 28-29</td><td>Tu-W</td><td>SBEC FINAL</td><td>Ownership percentages finalized</td><td class="party-nyic">All parties</td><td></td></tr>
-
-<tr class="hard-stop"><td>Jan 31</td><td>Fri</td><td>HARD STOP</td><td>All sections complete and reviewed</td><td>All teams</td><td></td></tr>
-<tr class="final"><td>Feb 2</td><td>Sun</td><td>FINAL</td><td>Submit to DFW via Bonfire</td><td style="color:white;font-weight:700;">Sunshine White</td><td></td></tr>
-
-</tbody>
-</table>
-
+<!-- LEGEND AT TOP -->
 <div class="legend">
   <div class="legend-item"><div class="legend-color" style="background:#e6fffa"></div>Kickoff/Align</div>
   <div class="legend-item"><div class="legend-color" style="background:#fef3c7"></div>Concept Build</div>
@@ -211,6 +250,122 @@
   <div class="legend-item"><div class="legend-color" style="background:#fed7aa"></div>SBEC</div>
   <div class="legend-item"><div class="legend-color" style="background:#ef4444"></div>Deadline</div>
   <div class="legend-item"><div class="legend-color" style="background:#fdf2f8;border-left:3px solid #be185d"></div>Golman Universal</div>
+  <div class="legend-item" style="margin-left:auto; font-weight:600; color:#22c55e;">Click Status to mark complete</div>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th style="width:90px;">Date</th>
+  <th style="width:80px; white-space:nowrap;">Day</th>
+  <th style="width:160px; white-space:nowrap;">Phase</th>
+  <th>Deliverable</th>
+  <th style="width:200px; white-space:nowrap;">Responsible</th>
+  <th style="width:120px;">Status</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>Final proposal outline (Tabs 1-9)</td><td class="party-sunshine">Sunshine White</td><td class="status-cell" data-row="1"></td></tr>
+<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>RFP compliance checklist mapped to scoring criteria</td><td class="party-sunshine">Sunshine White</td><td class="status-cell" data-row="2"></td></tr>
+<tr class="kickoff"><td>Jan 13</td><td>Mon</td><td>KICKOFF</td><td>Ownership structure confirmation (equity % for SBEC)</td><td class="party-nyic">NYIC / JBJ / Augustus</td><td class="status-cell" data-row="3"></td></tr>
+
+<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Narrative strategy confirmation (differentiator-led approach)</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="4"></td></tr>
+<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Review cadence & preview rules confirmed</td><td class="party-sunshine">Sunshine White</td><td class="status-cell" data-row="5"></td></tr>
+<tr class="kickoff"><td>Jan 14</td><td>Tue</td><td>ALIGNMENT</td><td>Bonfire submission requirements confirmed</td><td class="party-sunshine">Sunshine White</td><td class="status-cell" data-row="6"></td></tr>
+
+<tr class="concept-build"><td>Jan 15-16</td><td>Wed-Thu</td><td>CONCEPT BUILD</td><td>Concept narrative drafting (Dallas to Fort Worth journey)</td><td class="party-jbj">JBJ / BWOD</td><td class="status-cell" data-row="7"></td></tr>
+<tr class="concept-build"><td>Jan 15-16</td><td>Wed-Thu</td><td>CONCEPT BUILD</td><td>Community engagement narrative</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="8"></td></tr>
+<tr class="concept-build"><td>Jan 15-16</td><td>Wed-Thu</td><td>CONCEPT BUILD</td><td>Neighborhood storytelling & brand positioning</td><td class="party-bwod">BWOD / JBJ</td><td class="status-cell" data-row="9"></td></tr>
+<tr class="concept-build"><td>Jan 15-16</td><td>Wed-Thu</td><td>CONCEPT BUILD</td><td>Initial merchandise logic & category strategy</td><td class="party-nyic">NYIC / BWOD</td><td class="status-cell" data-row="10"></td></tr>
+
+<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Concept direction & sense-of-place narrative</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="11"></td></tr>
+<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Neighborhood framework & brand expression</td><td class="party-bwod">BWOD</td><td class="status-cell" data-row="12"></td></tr>
+<tr class="preview"><td>Jan 17</td><td>Fri</td><td><span class="milestone">PREVIEW #1</span></td><td>Initial merchandise philosophy (non-pricing)</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="13"></td></tr>
+
+<tr class="refinement"><td>Jan 18-19</td><td>Sat-Sun</td><td>REFINEMENT</td><td>Concept revisions based on feedback</td><td class="party-jbj">JBJ / BWOD</td><td class="status-cell" data-row="14"></td></tr>
+<tr class="refinement"><td>Jan 18-19</td><td>Sat-Sun</td><td>REFINEMENT</td><td>Operational assumptions drafting</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="15"></td></tr>
+<tr class="refinement"><td>Jan 18-19</td><td>Sat-Sun</td><td>REFINEMENT</td><td>Workforce program framework drafting</td><td class="party-augustus">Augustus Sinclair</td><td class="status-cell" data-row="16"></td></tr>
+
+<tr class="concept-lock"><td>Jan 20</td><td>Mon</td><td><span class="milestone">CONCEPT LOCK</span></td><td>Final Tab 2 (Concept Fit & Differentiation)</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="17"></td></tr>
+<tr class="concept-lock"><td>Jan 20</td><td>Mon</td><td><span class="milestone">CONCEPT LOCK</span></td><td>Brand story & neighborhood logic locked</td><td class="party-bwod">BWOD</td><td class="status-cell" data-row="18"></td></tr>
+
+<tr class="build golman"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td><strong>Store design development</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td class="status-cell" data-row="19"></td></tr>
+<tr class="build golman"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td><strong>Flight log feature design</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td class="status-cell" data-row="20"></td></tr>
+<tr class="build golman"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td><strong>Coordination with NYIC on staffing</strong></td><td class="party-golman">GOLMAN / NYIC</td><td class="status-cell" data-row="21"></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td>Operational model drafting (staffing, hours, flow)</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="22"></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td>Technology / POS system integration plan</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="23"></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td>Workforce programming language refinement</td><td class="party-augustus">Augustus Sinclair</td><td class="status-cell" data-row="24"></td></tr>
+<tr class="build"><td>Jan 21-22</td><td>Tue-Wed</td><td>BUILD WINDOW</td><td>Customer Experience framework drafting</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="25"></td></tr>
+
+<tr class="preview golman"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td><strong>Initial store layout & zoning</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td class="status-cell" data-row="26"></td></tr>
+<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft operational narrative (non-financial)</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="27"></td></tr>
+<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft workforce section</td><td class="party-augustus">Augustus Sinclair</td><td class="status-cell" data-row="28"></td></tr>
+<tr class="preview"><td>Jan 23</td><td>Thu</td><td><span class="milestone">PREVIEW #2</span></td><td>Draft Customer Experience (Tab 4 A-B)</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="29"></td></tr>
+
+<tr class="integration golman"><td>Jan 24-25</td><td>Fri-Sat</td><td>INTEGRATION</td><td><strong>Design revisions</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td class="status-cell" data-row="30"></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fri-Sat</td><td>INTEGRATION</td><td>Operations refinement</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="31"></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fri-Sat</td><td>INTEGRATION</td><td>CARE / hospitality standards integration</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="32"></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fri-Sat</td><td>INTEGRATION</td><td>Photography / graphic design for proposal</td><td class="party-jbj">JBJ Management</td><td class="status-cell" data-row="33"></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fri-Sat</td><td>INTEGRATION</td><td>Product photos</td><td class="party-bwod">BWOD</td><td class="status-cell" data-row="34"></td></tr>
+<tr class="integration"><td>Jan 24-25</td><td>Fri-Sat</td><td>INTEGRATION</td><td>Workforce alignment with #OneDFW values</td><td class="party-augustus">Augustus Sinclair</td><td class="status-cell" data-row="35"></td></tr>
+
+<tr class="design-freeze golman"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td><strong>Final store layout & renderings</strong></td><td class="party-golman">GOLMAN UNIVERSAL</td><td class="status-cell" data-row="36"></td></tr>
+<tr class="design-freeze"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td>Final operational model</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="37"></td></tr>
+<tr class="design-freeze"><td>Jan 26</td><td>Sun</td><td><span class="milestone">DESIGN FREEZE</span></td><td>Final workforce narrative</td><td class="party-augustus">Augustus Sinclair</td><td class="status-cell" data-row="38"></td></tr>
+
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Full draft Tabs 3-6</td><td class="party-jbj">JBJ / NYIC</td><td class="status-cell" data-row="39"></td></tr>
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft pro forma</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="40"></td></tr>
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft financial exhibits</td><td class="party-nyic">NYIC</td><td class="status-cell" data-row="41"></td></tr>
+<tr class="preview"><td>Jan 27</td><td>Mon</td><td><span class="milestone">PREVIEW #3</span></td><td>Draft SBEC ownership inputs</td><td class="party-sunshine">Sunshine / NYIC / JBJ</td><td class="status-cell" data-row="42"></td></tr>
+
+<tr class="sbec"><td>Jan 28-29</td><td>Tue-Wed</td><td>SBEC FINAL</td><td>SBEC Forms (F-1 through F-6)</td><td class="party-sunshine">Sunshine White</td><td class="status-cell" data-row="43"></td></tr>
+<tr class="sbec"><td>Jan 28-29</td><td>Tue-Wed</td><td>SBEC FINAL</td><td>Joint Venture Agreement</td><td class="party-sunshine">Sunshine / Legal</td><td class="status-cell" data-row="44"></td></tr>
+<tr class="sbec"><td>Jan 28-29</td><td>Tue-Wed</td><td>SBEC FINAL</td><td>Licensing agreement</td><td class="party-bwod">BWOD</td><td class="status-cell" data-row="45"></td></tr>
+<tr class="sbec"><td>Jan 28-29</td><td>Tue-Wed</td><td>SBEC FINAL</td><td>Ownership percentages finalized</td><td class="party-nyic">All parties</td><td class="status-cell" data-row="46"></td></tr>
+
+<tr class="hard-stop"><td>Jan 31</td><td>Fri</td><td>HARD STOP</td><td>All sections complete and reviewed</td><td>All teams</td><td class="status-cell" data-row="47"></td></tr>
+<tr class="final"><td>Feb 2</td><td>Sun</td><td>FINAL</td><td>Submit to DFW via Bonfire</td><td style="color:white;font-weight:700;">Sunshine White</td><td class="status-cell" data-row="48"></td></tr>
+
+</tbody>
+</table>
+
+<!-- MODAL FOR COMPLETION -->
+<div class="modal-overlay" id="completionModal">
+  <div class="modal">
+    <h3>Mark Task Complete</h3>
+    <div class="modal-task" id="modalTaskName"></div>
+
+    <label for="completionDate">Completion Date</label>
+    <input type="date" id="completionDate">
+
+    <label for="completionTime">Time Completed</label>
+    <select id="completionTime">
+      <option value="">Select time...</option>
+      <option value="Morning (before 12pm)">Morning (before 12pm)</option>
+      <option value="Afternoon (12pm-5pm)">Afternoon (12pm-5pm)</option>
+      <option value="Evening (after 5pm)">Evening (after 5pm)</option>
+    </select>
+
+    <label for="completedBy">Completed By</label>
+    <select id="completedBy">
+      <option value="">Select person...</option>
+      <option value="Sunshine White">Sunshine White</option>
+      <option value="JBJ Management">JBJ Management</option>
+      <option value="BWOD">BWOD</option>
+      <option value="NYIC">NYIC</option>
+      <option value="Augustus Sinclair">Augustus Sinclair</option>
+      <option value="Golman Universal">Golman Universal</option>
+      <option value="Legal">Legal</option>
+      <option value="All Parties">All Parties</option>
+    </select>
+
+    <div class="modal-buttons">
+      <button class="btn-complete" onclick="saveCompletion()">Mark Complete</button>
+      <button class="btn-clear" onclick="clearCompletion()">Clear Status</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
 </div>
 
 <!-- PAGE 2: SUMMARY BOXES -->
@@ -304,6 +459,124 @@
 
   </div>
 </div>
+
+<script>
+  // Storage key for completions
+  const STORAGE_KEY = 'dfw_tracker_completions';
+  let currentRow = null;
+
+  // Load saved completions on page load
+  function loadCompletions() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const completions = JSON.parse(saved);
+      Object.keys(completions).forEach(row => {
+        updateCellDisplay(row, completions[row]);
+      });
+    }
+  }
+
+  // Update cell display based on completion data
+  function updateCellDisplay(row, data) {
+    const cell = document.querySelector(`[data-row="${row}"]`);
+    if (cell && data) {
+      cell.classList.add('completed');
+      cell.innerHTML = `
+        <div class="checkmark">&#10003;</div>
+        <div class="completion-info">${data.completedBy}<br>${data.date}</div>
+      `;
+    }
+  }
+
+  // Click handler for status cells
+  document.querySelectorAll('.status-cell').forEach(cell => {
+    cell.addEventListener('click', function() {
+      currentRow = this.getAttribute('data-row');
+      const taskCell = this.parentElement.querySelector('td:nth-child(4)');
+      const taskName = taskCell ? taskCell.textContent : 'Task';
+
+      document.getElementById('modalTaskName').textContent = taskName;
+
+      // Set today's date as default
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('completionDate').value = today;
+
+      // Pre-select responsible party if available
+      const responsibleCell = this.parentElement.querySelector('td:nth-child(5)');
+      if (responsibleCell) {
+        const responsible = responsibleCell.textContent.trim();
+        const selectEl = document.getElementById('completedBy');
+        for (let option of selectEl.options) {
+          if (responsible.includes(option.value) || option.value.includes(responsible.split(' ')[0])) {
+            selectEl.value = option.value;
+            break;
+          }
+        }
+      }
+
+      document.getElementById('completionModal').classList.add('active');
+    });
+  });
+
+  // Save completion
+  function saveCompletion() {
+    const date = document.getElementById('completionDate').value;
+    const time = document.getElementById('completionTime').value;
+    const completedBy = document.getElementById('completedBy').value;
+
+    if (!date || !completedBy) {
+      alert('Please select a date and who completed the task.');
+      return;
+    }
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const completions = saved ? JSON.parse(saved) : {};
+
+    completions[currentRow] = {
+      date: date,
+      time: time,
+      completedBy: completedBy,
+      timestamp: new Date().toISOString()
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completions));
+    updateCellDisplay(currentRow, completions[currentRow]);
+    closeModal();
+  }
+
+  // Clear completion
+  function clearCompletion() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const completions = JSON.parse(saved);
+      delete completions[currentRow];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(completions));
+    }
+
+    const cell = document.querySelector(`[data-row="${currentRow}"]`);
+    if (cell) {
+      cell.classList.remove('completed');
+      cell.innerHTML = '';
+    }
+    closeModal();
+  }
+
+  // Close modal
+  function closeModal() {
+    document.getElementById('completionModal').classList.remove('active');
+    document.getElementById('completionTime').value = '';
+    document.getElementById('completedBy').value = '';
+    currentRow = null;
+  }
+
+  // Close modal on overlay click
+  document.getElementById('completionModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Load saved data on page load
+  loadCompletions();
+</script>
 
 </body>
 </html>
